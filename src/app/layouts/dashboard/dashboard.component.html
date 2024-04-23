@@ -1,0 +1,28 @@
+<mat-drawer-container class="example-container" autosize>
+    <!-- Sidebar -->
+    <mat-drawer #drawer class="example-sidenav" [mode]="isMobile() ? 'over' : 'side'">
+        <!-- Contenido de la barra lateral -->
+        <p>Auto-resizing sidenav</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>
+    </mat-drawer>
+    
+    <!-- Contenido principal -->
+    <div class="example-sidenav-content">
+        <!-- Barra de herramientas -->
+        <mat-toolbar color="primary">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Toggle menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>My Application</span>
+            </div>
+        </mat-toolbar>
+
+        <!-- Contenedor para el componente y ocupar el espacio restante -->
+        <main style="padding: 1rem;">
+            <app-users></app-users>
+        </main>
+    </div>
+</mat-drawer-container>
