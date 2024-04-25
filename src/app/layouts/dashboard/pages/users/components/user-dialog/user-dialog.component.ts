@@ -11,19 +11,23 @@ export class UserDialogComponent {
 
   constructor(private formBuilder: FormBuilder, private matDialogRef: MatDialogRef<UserDialogComponent>) {
     this.userForm = this.formBuilder.group({
-      firstName: ['', 
-      Validators.required,
-      Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
-      Validators.maxLength(5),],
-      lastName: ['', 
-      Validators.required,
-      Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
-      Validators.maxLength(5),],
+      firstName: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
+        Validators.maxLength(5),
+      ]],
+      lastName: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
+        Validators.maxLength(5),
+      ]],
       email: ['', [
         Validators.required, 
-        Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')]],
+        Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
+      ]],
     });
-  }
+}
+
 
   onSave(): void {
     if (this.userForm.invalid) {

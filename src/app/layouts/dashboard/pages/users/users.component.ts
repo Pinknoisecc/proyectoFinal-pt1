@@ -33,7 +33,18 @@ export class UsersComponent {
   constructor(private matDialog: MatDialog){}
     
     openDialog(): void {
-      this.matDialog.open(UserDialogComponent);
+      this.matDialog
+      .open(UserDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+
+            this.users = [...this.users, result];
+          }
+          console.log(result);
+        },
+      });
     }
   
 }
