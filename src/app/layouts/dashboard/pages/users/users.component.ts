@@ -16,17 +16,17 @@ export class UsersComponent {
   users: IUser[] = [
     {
       id: 1,
-      firstName: 'Naruto',
-      lastName: 'Uzumaki',
-      email: 'naru@test.com',
+      firstName: 'Juan',
+      lastName: 'Ortega',
+      email: 'juanor@gmail.com',
       role: 'ADMIN',
       createdAt: new Date()
     },
     {
       id: 2,
-      firstName: 'Sasuke',
-      lastName: 'Uchiha',
-      email: 'sasuke@test.com',
+      firstName: 'Claudio',
+      lastName: 'Ramirez',
+      email: 'claudio.r@gmail.com',
       role: 'USER',
       createdAt: new Date()
     },
