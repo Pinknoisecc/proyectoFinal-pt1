@@ -11,8 +11,8 @@ export class DashboardComponent {
 
   isMobile(): boolean {
     if (typeof window !== 'undefined') {
-      return window.innerWidth < 280; // Cambia 600 por el ancho que desees para definir cuando es un dispositivo móvil
+      return window.innerWidth < 280; 
     }
-    return false; // Return false in a server environment
+    return false; 
   }
 }

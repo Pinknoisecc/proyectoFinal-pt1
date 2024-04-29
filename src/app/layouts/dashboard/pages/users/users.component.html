@@ -29,15 +29,21 @@
 
     <!-- email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <th mat-header-cell *matHeaderCellDef> Curso </th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-    <!-- role Column -->
-    <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef> Role </th>
-      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-    </ng-container>
+<!-- asignatura Column -->
+<ng-container matColumnDef="asignaturas">
+  <th mat-header-cell *matHeaderCellDef> Asignaturas </th>
+  <td mat-cell *matCellDef="let element"> 
+    {{ mostrarAsignaturas(element.asignaturas) }}
+  </td>
+</ng-container>
+
+
+    
+    
 
     <!-- createdAt Column -->
     <ng-container matColumnDef="createdAt">

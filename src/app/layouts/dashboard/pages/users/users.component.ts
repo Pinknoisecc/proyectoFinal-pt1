@@ -3,23 +3,22 @@ import { IUser } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  
-    displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'role', 'createdAt', 'actions',];
-  
+
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'asignaturas', 'createdAt', 'actions'];
+
   users: IUser[] = [
     {
       id: 1,
       firstName: 'Juan',
       lastName: 'Ortega',
       email: 'juanor@gmail.com',
-      role: 'ADMIN',
+      asignaturas: ['Química'],
       createdAt: new Date()
     },
     {
@@ -27,42 +26,45 @@ export class UsersComponent {
       firstName: 'Claudio',
       lastName: 'Ramirez',
       email: 'claudio.r@gmail.com',
-      role: 'USER',
+      asignaturas: ['Biología'],
       createdAt: new Date()
     },
-  ]
+  ];
 
-  
+  constructor(private matDialog: MatDialog) {}
 
-  constructor(private matDialog: MatDialog){}
-    
-    openDialog(editingUser?: IUser): void {
-      this.matDialog
+  openDialog(editingUser?: IUser): void {
+    this.matDialog
       .open(UserDialogComponent, {
         data: editingUser,
-      }) 
+      })
       .afterClosed()
       .subscribe({
         next: (result) => {
           if (result) {
-            if (editingUser){
-              this.users = this.users.map((u) => u.id === editingUser.id ? { ...u, ...result} : u)
-
-
+            if (editingUser) {
+              this.users = this.users.map((u) => u.id === editingUser.id ? { ...u, ...result } : u);
             } else {
-                result.id = new Date().getTime().toString().substring(0 , 3);
-          result.createdAt = new Date();
-            this.users = [...this.users, result];
-              }
-            }
+              // Obtener el último ID y agregar 1 para el nuevo usuario
+              const lastId = this.users.length > 0 ? this.users[this.users.length - 1].id : 0;
+              result.id = lastId + 1;
 
-          console.log(result);
+              result.createdAt = new Date();
+              result.asignaturas = typeof result.asignaturas === 'string' ? [result.asignaturas] : result.asignaturas;
+              this.users = [...this.users, result];
+            }
+          }
         },
       });
-    }
+  }
+
   onDeleteUser(id: number): void {
-    if (confirm('Está seguro?')){
-    this.users = this.users.filter((u) => u.id != id);
+    if (confirm('Está seguro?')) {
+      this.users = this.users.filter((u) => u.id !== id);
     }
+  }
+
+  mostrarAsignaturas(asignaturas: string[]): string {
+    return asignaturas.join(', ');
   }
 }

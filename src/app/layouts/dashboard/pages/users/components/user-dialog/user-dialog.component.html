@@ -2,46 +2,45 @@
 
 <div mat-dialog-content>
     
-<form [formGroup]="userForm">
+  <form [formGroup]="userForm">
     <div class="row">
-        <div class="col-6">
-            <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Nombre</mat-label>
-                <input formControlName="firstName" matInput />
-                <mat-hint>El nombre debe tener al menos 6 carácteres.</mat-hint>
-            </mat-form-field>
-        </div>
+      <div class="col-6">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="firstName" matInput />
+          <mat-hint>El nombre debe tener al menos 6 caracteres.</mat-hint>
+        </mat-form-field>
+      </div>
 
-        <div class="col-6">
-            <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Apellido</mat-label>
-                <input formControlName="lastName" matInput />
-            </mat-form-field>
-        </div>
+      <div class="col-6">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input formControlName="lastName" matInput />
+        </mat-form-field>
+      </div>
 
-        <div class="col-8">
-            <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" matInput />
-            </mat-form-field>
-        </div>
+      <div class="col-8">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+        </mat-form-field>
+      </div>
 
-        <div class="col-4">
-            <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Role</mat-label>
-                <mat-select formControlName=""role>
-                    <mat-option value="ADMIN">ADMIN</mat-option>
-                    <mat-option value="USER">USER</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+      <div class="col-4">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Asignatura</mat-label>
+          <mat-select formControlName="asignaturas">
+            <mat-option value="Química">Química</mat-option>
+            <mat-option value="Biología">Biología</mat-option>
+            <mat-option value="Física">Física</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-</form>
-{{ userForm.value | json }}
+  </form>
 </div>
 
-
 <div class="d-flex justify-content-end pt-4" mat-dialog-actions>
-    <button (click)="onSave()" mat-button>Guardar</button>
-    <button mat-dialog-close mat-button>Cancelar</button>
+  <button (click)="onSave()" mat-button>Guardar</button>
+  <button mat-dialog-close mat-button>Cancelar</button>
 </div>
