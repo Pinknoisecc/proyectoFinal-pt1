@@ -19,7 +19,18 @@
         </mat-form-field>
       </div>
 
-      <div class="col-8">
+      <div class="col-4">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Cursos</mat-label>
+          <mat-select formControlName="cursos">
+            <mat-option value="1ro A">1ro A</mat-option>
+            <mat-option value="1ro B">1ro B</mat-option>
+            <mat-option value="1ro C">1ro C</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-7">
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput />

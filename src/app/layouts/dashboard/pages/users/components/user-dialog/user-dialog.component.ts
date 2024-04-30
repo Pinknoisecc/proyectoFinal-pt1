@@ -26,11 +26,12 @@ export class UserDialogComponent {
         Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
         Validators.maxLength(10),
       ]],
+      cursos: [editingUser ? editingUser.cursos : [], Validators.required], 
       email: [editingUser ? editingUser.email : '', [
         Validators.required, 
         Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
       ]],
-      asignaturas: [editingUser ? editingUser.asignaturas : [], Validators.required], // Asignar las asignaturas del usuario en edición si existen
+      asignaturas: [editingUser ? editingUser.asignaturas : [], Validators.required],
     });
   }
 
@@ -41,6 +42,9 @@ export class UserDialogComponent {
       const userData = this.userForm.value;
       // Convertir la asignatura a un array de strings si es una sola asignatura
       userData.asignaturas = typeof userData.asignaturas === 'string' ? [userData.asignaturas] : userData.asignaturas;
+      this.matDialogRef.close(userData);
+
+      userData.cursos = typeof userData.cursos === 'string' ? [userData.cursos] : userData.cursos;
       this.matDialogRef.close(userData);
     }
   }
