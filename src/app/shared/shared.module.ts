@@ -9,11 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
+import { FormFieldValidationErrorsPipe } from './pipes/form-field-validation-errors.pipe';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FormFieldValidationErrorsPipe
+  ],
   imports: [
     CommonModule
   ],
@@ -27,6 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
+    FormFieldValidationErrorsPipe,
   ],
 })
 export class SharedModule { }

@@ -35,15 +35,44 @@ export class UserDialogComponent {
     });
   }
 
+  get firstNameControl(){
+    return this.userForm.get('firstName')
+  }
+
+  get lastNameControl(){
+    return this.userForm.get('lastName')
+  }
+
+  get emailNameControl(){
+    return this.userForm.get('email')
+  }
+
+  get asignaturasNameControl(){
+    return this.userForm.get('asignaturas')
+  }
+
+  get cursosNameControl(){
+    return this.userForm.get('cursos')
+  }
+
+  get createdAtNameControl(){
+    return this.userForm.get('lastName')
+  }
+
+  get idNameControl(){
+    return this.userForm.get('id')
+  }
+
+
+
+
+
   onSave(): void {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
       const userData = this.userForm.value;
-      // Convertir la asignatura a un array de strings si es una sola asignatura
       userData.asignaturas = typeof userData.asignaturas === 'string' ? [userData.asignaturas] : userData.asignaturas;
-      this.matDialogRef.close(userData);
-
       userData.cursos = typeof userData.cursos === 'string' ? [userData.cursos] : userData.cursos;
       this.matDialogRef.close(userData);
     }

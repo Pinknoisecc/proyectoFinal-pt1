@@ -9,6 +9,7 @@
           <mat-label>Nombre</mat-label>
           <input formControlName="firstName" matInput />
           <mat-hint>El nombre debe tener al menos 6 caracteres.</mat-hint>
+          <mat-error>{{ firstNameControl?.errors | formFieldValidationErrors}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -16,6 +17,7 @@
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Apellido</mat-label>
           <input formControlName="lastName" matInput />
+          <mat-error>{{ lastNameControl?.errors | formFieldValidationErrors}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -27,6 +29,7 @@
             <mat-option value="1ro B">1ro B</mat-option>
             <mat-option value="1ro C">1ro C</mat-option>
           </mat-select>
+          <mat-error>{{ cursosNameControl?.errors | formFieldValidationErrors}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -34,6 +37,7 @@
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput />
+          <mat-error>{{ emailNameControl?.errors | formFieldValidationErrors}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -45,6 +49,7 @@
             <mat-option value="Biología">Biología</mat-option>
             <mat-option value="Física">Física</mat-option>
           </mat-select>
+          <mat-error>{{ asignaturasNameControl?.errors | formFieldValidationErrors}}</mat-error>
         </mat-form-field>
       </div>
     </div>

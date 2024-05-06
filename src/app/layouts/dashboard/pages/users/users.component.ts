@@ -10,7 +10,7 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
 })
 export class UsersComponent {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'asignaturas', 'createdAt', 'actions', 'cursos',];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'asignaturas', 'createdAt', 'actions', 'cursos'];
 
   users: IUser[] = [
     {
@@ -19,7 +19,7 @@ export class UsersComponent {
       lastName: 'Ortega',
       cursos: ['1ro B'],
       email: 'juanor@gmail.com',
-      asignaturas: ['Química'], // Asignatura
+      asignaturas: ['Química'],
       createdAt: new Date()
     },
     {
@@ -36,39 +36,34 @@ export class UsersComponent {
   constructor(private matDialog: MatDialog) {}
 
   openDialog(editingUser?: IUser): void {
-    this.matDialog
-      .open(UserDialogComponent, {
-        data: editingUser,
-      })
-      .afterClosed()
-      .subscribe({
-        next: (result) => {
-          if (result) {
-            if (editingUser) {
-              this.users = this.users.map((u) => u.id === editingUser.id ? { ...u, ...result } : u);
-            } else {
-              result.id = new Date().getTime().toString().substring(0, 3);
-              result.createdAt = new Date();
-              // Convertir la asignatura a un array de strings si es una sola asignatura
-              result.asignaturas = typeof result.asignaturas === 'string' ? [result.asignaturas] : result.asignaturas;
-              this.users = [...this.users, result];
+    const dialogRef = this.matDialog.open(UserDialogComponent, {
+      data: editingUser,
+    });
 
-              result.cursos = typeof result.cursos === 'string' ? [result.cursos] : result.cursos;
-              this.users = [...this.users, result];
-            }
-          }
-          console.log(result);
-        },
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (editingUser) {
+          this.users = this.users.map(u => u.id === editingUser.id ? { ...u, ...result } : u);
+        } else {
+          const lastId = this.users.length > 0 ? this.users[this.users.length - 1].id : 0;
+          result.id = lastId + 1;
+          result.createdAt = new Date();
+          result.asignaturas = typeof result.asignaturas === 'string' ? [result.asignaturas] : result.asignaturas;
+          result.cursos = typeof result.cursos === 'string' ? [result.cursos] : result.cursos;
+          this.users.push(result);
+          this.users.sort((a, b) => a.id - b.id); 
+          this.users = [...this.users]; 
+        }
+      }
+    });
   }
 
   onDeleteUser(id: number): void {
     if (confirm('Está seguro?')) {
-      this.users = this.users.filter((u) => u.id !== id);
+      this.users = this.users.filter(u => u.id !== id);
     }
   }
 
-  // Función para mostrar las asignaturas como una cadena separada por comas
   mostrarAsignaturas(asignaturas: string[]): string {
     return asignaturas.join(', ');
   }
